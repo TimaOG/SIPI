@@ -1,7 +1,7 @@
-from config import app, db, manager
+from config import app, db
+from models import Users
 from flask_login import login_user, login_required, current_user
 from flask import redirect, render_template, url_for, request, flash
-from models import Users
 
 
 @app.route('/')

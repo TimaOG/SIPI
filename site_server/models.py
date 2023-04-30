@@ -1,8 +1,8 @@
-from config import db, manager
+from config import db#, login
 from flask_login import UserMixin
 
 
-class Users(db.Model, UserMixin):
+class Users(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255))
@@ -25,7 +25,6 @@ class Users(db.Model, UserMixin):
     def __repr__(self):
         return f'Name: {self.username}\n Email: {self.email}\n Registration date: {self.registrationdate}\n\n'
 
-
-@manager.user_loader()
-def load_user(user_id):
-    return Users.query.get(user_id)
+    # @login.user_loader()
+    # def load_user(self, user_id):
+    #     return Users.query.get(user_id)
