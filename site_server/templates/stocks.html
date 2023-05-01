@@ -5,6 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../static/css/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../static/css/green.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../static/css/custom.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/main.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <title>Stocks</title>
@@ -45,39 +53,185 @@
                     </nav>
                 </div>
             </div>
-            <div class="col">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Название акции</th>
-                        <th scope="col">Цена</th>
-                        <th scope="col">Стутус</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                    </tbody>
-                  </table>
+            <div class="col-md-9 col-sm-9">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="table-responsive">
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                <tr class="headings">
+                                    <th>
+                                        <input type="checkbox" id="check-all" class="flat">
+                                    </th>
+                                    <th class="column-title">Invoice </th>
+                                    <th class="column-title">Invoice Date </th>
+                                    <th class="column-title">Order </th>
+                                    <th class="column-title">Bill to Name </th>
+                                    <th class="column-title">Status </th>
+                                    <th class="column-title">Amount </th>
+                                    <th class="column-title no-link last"><span class="nobr">Action</span>
+                                    </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr class="even pointer">
+                                    <td class="a-center ">
+                                        <input type="checkbox" class="flat" name="table_records">
+                                    </td>
+                                    <td class=" ">121000040</td>
+                                    <td class=" ">May 23, 2014 11:47:56 PM </td>
+                                    <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
+                                    <td class=" ">John Blank L</td>
+                                    <td class=" ">Paid</td>
+                                    <td class="a-right a-right ">$7.45</td>
+                                    <td class=" last"><a href="#">View</a>
+                                    </td>
+                                </tr>
+                                <tr class="odd pointer">
+                                    <td class="a-center ">
+                                        <input type="checkbox" class="flat" name="table_records">
+                                    </td>
+                                    <td class=" ">121000039</td>
+                                    <td class=" ">May 23, 2014 11:30:12 PM</td>
+                                    <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
+                                    </td>
+                                    <td class=" ">John Blank L</td>
+                                    <td class=" ">Paid</td>
+                                    <td class="a-right a-right ">$741.20</td>
+                                    <td class=" last"><a href="#">View</a>
+                                    </td>
+                                </tr>
+                                <tr class="even pointer">
+                                    <td class="a-center ">
+                                        <input type="checkbox" class="flat" name="table_records">
+                                    </td>
+                                    <td class=" ">121000038</td>
+                                    <td class=" ">May 24, 2014 10:55:33 PM</td>
+                                    <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
+                                    </td>
+                                    <td class=" ">Mike Smith</td>
+                                    <td class=" ">Paid</td>
+                                    <td class="a-right a-right ">$432.26</td>
+                                    <td class=" last"><a href="#">View</a>
+                                    </td>
+                                </tr>
+                                <tr class="odd pointer">
+                                    <td class="a-center ">
+                                        <input type="checkbox" class="flat" name="table_records">
+                                    </td>
+                                    <td class=" ">121000037</td>
+                                    <td class=" ">May 24, 2014 10:52:44 PM</td>
+                                    <td class=" ">121000204</td>
+                                    <td class=" ">Mike Smith</td>
+                                    <td class=" ">Paid</td>
+                                    <td class="a-right a-right ">$333.21</td>
+                                    <td class=" last"><a href="#">View</a>
+                                    </td>
+                                </tr>
+                                <tr class="even pointer">
+                                    <td class="a-center ">
+                                        <input type="checkbox" class="flat" name="table_records">
+                                    </td>
+                                    <td class=" ">121000040</td>
+                                    <td class=" ">May 24, 2014 11:47:56 PM </td>
+                                    <td class=" ">121000210</td>
+                                    <td class=" ">John Blank L</td>
+                                    <td class=" ">Paid</td>
+                                    <td class="a-right a-right ">$7.45</td>
+                                    <td class=" last"><a href="#">View</a>
+                                    </td>
+                                </tr>
+                                <tr class="odd pointer">
+                                    <td class="a-center ">
+                                        <input type="checkbox" class="flat" name="table_records">
+                                    </td>
+                                    <td class=" ">121000039</td>
+                                    <td class=" ">May 26, 2014 11:30:12 PM</td>
+                                    <td class=" ">121000208 <i class="error fa fa-long-arrow-down"></i>
+                                    </td>
+                                    <td class=" ">John Blank L</td>
+                                    <td class=" ">Paid</td>
+                                    <td class="a-right a-right ">$741.20</td>
+                                    <td class=" last"><a href="#">View</a>
+                                    </td>
+                                </tr>
+                                <tr class="even pointer">
+                                    <td class="a-center ">
+                                        <input type="checkbox" class="flat" name="table_records">
+                                    </td>
+                                    <td class=" ">121000038</td>
+                                    <td class=" ">May 26, 2014 10:55:33 PM</td>
+                                    <td class=" ">121000203</td>
+                                    <td class=" ">Mike Smith</td>
+                                    <td class=" ">Paid</td>
+                                    <td class="a-right a-right ">$432.26</td>
+                                    <td class=" last"><a href="#">View</a>
+                                    </td>
+                                </tr>
+                                <tr class="odd pointer">
+                                    <td class="a-center ">
+                                        <input type="checkbox" class="flat" name="table_records">
+                                    </td>
+                                    <td class=" ">121000037</td>
+                                    <td class=" ">May 26, 2014 10:52:44 PM</td>
+                                    <td class=" ">121000204</td>
+                                    <td class=" ">Mike Smith</td>
+                                    <td class=" ">Paid</td>
+                                    <td class="a-right a-right ">$333.21</td>
+                                    <td class=" last"><a href="#">View</a>
+                                    </td>
+                                </tr>
+
+                                <tr class="even pointer">
+                                    <td class="a-center ">
+                                        <input type="checkbox" class="flat" name="table_records">
+                                    </td>
+                                    <td class=" ">121000040</td>
+                                    <td class=" ">May 27, 2014 11:47:56 PM </td>
+                                    <td class=" ">121000210</td>
+                                    <td class=" ">John Blank L</td>
+                                    <td class=" ">Paid</td>
+                                    <td class="a-right a-right ">$7.45</td>
+                                    <td class=" last"><a href="#">View</a>
+                                    </td>
+                                </tr>
+                                <tr class="odd pointer">
+                                    <td class="a-center ">
+                                        <input type="checkbox" class="flat" name="table_records">
+                                    </td>
+                                    <td class=" ">121000039</td>
+                                    <td class=" ">May 28, 2014 11:30:12 PM</td>
+                                    <td class=" ">121000208</td>
+                                    <td class=" ">John Blank L</td>
+                                    <td class=" ">Paid</td>
+                                    <td class="a-right a-right ">$741.20</td>
+                                    <td class=" last"><a href="#">View</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
         </div>  
     </div>
+    <!-- jQuery -->
+    <script src="../static/js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="../static/js/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../static/js/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="../static/js/icheck.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../static/js/custom.min.js"></script>
     <script type="text/javascript" src="../static/js/script.js"></script>
 </body>
 </html>
