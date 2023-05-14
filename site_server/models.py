@@ -13,10 +13,11 @@ class Users(db.Model, UserMixin):
     isprime = db.Column(db.Boolean)
     theme = db.Column(db.Integer)
     registrationdate = db.Column(db.Date)
+    balance = db.Column(db.Integer)
 
     targetStocks = relationship('TargetStocks')
 
-    def __init__(self, name, password, email, telegrammid, isprime, theme, regdate):
+    def __init__(self, name, password, email, telegrammid, isprime, theme, regdate, balance):
         self.username = name
         self.userpassword = password
         self.email = email
@@ -24,6 +25,7 @@ class Users(db.Model, UserMixin):
         self.isprime = isprime
         self.theme = theme
         self.registrationdate = regdate
+        self.balance = balance
 
     def __repr__(self):
         return f'Name: {self.username}\nEmail: {self.email}\nRegistration date: {self.registrationdate}\n\n'

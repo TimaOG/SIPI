@@ -2,7 +2,7 @@ import datetime
 
 from config import app, db
 from models import Users, Notifications, Stocks, TargetStocks
-from flask_login import login_user, login_required, current_user
+from flask_login import login_user, login_required, current_user, logout_user
 from flask import redirect, render_template, url_for, request, flash
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -27,6 +27,12 @@ def login():
                 return redirect(url_for('login'))
     return render_template('login.html')
 
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
