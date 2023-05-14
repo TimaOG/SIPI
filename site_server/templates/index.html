@@ -54,7 +54,7 @@
                                 <p class="name-groups">Настройки</p>
                                 <hr>
                                 <li class="nav-item">
-                                    <a class="nav-link pages" href="#">Настройки</a>
+                                    <a class="nav-link pages" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Настройки</a>
                                 </li>
                             </ul>
                         </div>
@@ -122,7 +122,7 @@
                             </div>
                             <div class="col-md-3 col-sm-3  bg-white">
                                 <div class="x_title">
-                                    <h2>Избранные акции</h2>
+                                    <h2>Отслеживаемые акции</h2>
                                     <div class="clearfix"></div>
                                 </div>
 
@@ -173,7 +173,7 @@
                 <br />
 
                 <div class="row">
-                    <div class="col-md-6 col-sm-4 ">
+                    <div class="col-md-3 col-sm-4 ">
                         <div class="x_panel tile fixed_height_320 overflow_hidden">
                             <div class="x_title">
                                 <h2>Топ акций</h2>
@@ -188,10 +188,10 @@
                                         </th>
                                         <th>
                                             <div class="col-lg-7 col-md-7 col-sm-7 ">
-                                                <p class="">Device</p>
+                                                <p class=""></p>
                                             </div>
                                             <div class="col-lg-5 col-md-5 col-sm-5 ">
-                                                <p class="">Progress</p>
+                                                <p class=""></p>
                                             </div>
                                         </th>
                                     </tr>
@@ -240,24 +240,25 @@
                     </div>
 
 
-                    <div class="col-md-6 col-sm-4 ">
+                    <div class="col-md-9 col-sm-4 ">
                         <div class="x_panel tile fixed_height_320">
                             <div class="x_title">
-                                <h2>Активность пользователя, Имя пользовател</h2>
+                                <h2>Имя пользовател</h2>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
                                 <div class="dashboard-widget-content">
                                     <ul class="quick-list">
-                                        <li><a href="#">Настройки</a>
+                                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Настройки</a>
                                         </li>
                                         <li><a href="#">Выход</a>
                                         </li>
                                     </ul>
 
                                     <div class="sidebar-widget">
-                                        <h4>Ваш баланс</h4>
-                                        <h4>23000</h4>
+                                        <small>Сегодня: <img src="../static/icons/green_elevator_icon-icons.com_5940.png"></small>
+                                        <h4>Количество отслеживаемых акций: 40</h4>
+                                        <h4>Ваш баланс: 23000</h4>
                                     </div>
                                 </div>
                             </div>
@@ -340,6 +341,36 @@
                     </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Настройки</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Изменение темы на сайте</label>
+                    </div>
+                    <div class="row">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                                <input type="text" id="inputUser6" class="form-control">
+                            </div>
+                            <div class="col-auto">
+                                <label for="inputUser6" class="col-form-label">Изменение имени</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-primary">Сохранить изменения</button>
                 </div>
             </div>
         </div>
