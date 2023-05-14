@@ -10,19 +10,14 @@ from werkzeug.security import check_password_hash, generate_password_hash
 @app.route('/')
 @app.route('/index')
 def index():
-    # user = Users.query.first()
-    # targetStock = user.targetStocks
-    # stock = Stocks.query.filter_by(id=1).first()
-    # stock = Stocks.query.filter_by(id=targetStock.fkstock)
-    # print(stock)
     return render_template('index.html')
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-    email = request.form.get('email')
-    password = request.form.get('password')
     if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
         if email and password:
             user = Users.query.filter_by(email=email).first()
             if user and check_password_hash(user.userpassword, password):
@@ -41,13 +36,11 @@ def register():
     pass2 = request.form.get('password2')
     if request.method == 'POST' and fio and email and pass1 and pass2:
         if pass1 != pass2:
-            print('error passwords')
             return redirect(url_for('register'))
         else:
             passHash = generate_password_hash(pass1)
             new_user = Users(name=fio, password=passHash, email=email, telegrammid=666, isprime=True, theme=1,
                              regdate=datetime.date.today())
-            print(new_user)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user)
