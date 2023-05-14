@@ -5,11 +5,13 @@ from models import Users, Notifications, Stocks, TargetStocks
 from flask_login import login_user, login_required, current_user, logout_user
 from flask import redirect, render_template, url_for, request, flash
 from werkzeug.security import check_password_hash, generate_password_hash
+from utils import getStockPrice
 
 
 @app.route('/')
 @app.route('/index')
 def index():
+    print(getStockPrice('SBER'))
     return render_template('index.html')
 
 
