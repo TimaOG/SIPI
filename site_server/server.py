@@ -34,6 +34,7 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     fio = request.form.get('username')
@@ -46,7 +47,7 @@ def register():
         else:
             passHash = generate_password_hash(pass1)
             new_user = Users(name=fio, password=passHash, email=email, telegrammid=666, isprime=True, theme=1,
-                             regdate=datetime.date.today())
+                             regdate=datetime.date.today(), balance=0)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user)
