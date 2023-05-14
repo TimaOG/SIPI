@@ -1,9 +1,9 @@
-from config import db  # , login
+from config import db, login
 from flask_login import UserMixin
 from sqlalchemy.orm import relationship
 
 
-class Users(db.Model):
+class Users(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255))
@@ -13,10 +13,11 @@ class Users(db.Model):
     isprime = db.Column(db.Boolean)
     theme = db.Column(db.Integer)
     registrationdate = db.Column(db.Date)
+    balance = db.Column(db.Integer)
 
     targetStocks = relationship('TargetStocks')
 
-    def __init__(self, name, password, email, telegrammid, isprime, theme, regdate):
+    def __init__(self, name, password, email, telegrammid, isprime, theme, regdate, balance):
         self.username = name
         self.userpassword = password
         self.email = email
@@ -24,13 +25,16 @@ class Users(db.Model):
         self.isprime = isprime
         self.theme = theme
         self.registrationdate = regdate
+        self.balance = balance
 
     def __repr__(self):
         return f'Name: {self.username}\nEmail: {self.email}\nRegistration date: {self.registrationdate}\n\n'
 
-    # @login.user_loader()
-    # def load_user(self, user_id):
-    #     return Users.query.get(user_id)
+
+@login.user_loader
+def load_user(user_id):
+    user = Users.query.get(user_id)
+    return user
 
 
 class Notifications(db.Model):
