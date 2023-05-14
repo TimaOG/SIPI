@@ -54,7 +54,8 @@
                                 <p class="name-groups">Настройки</p>
                                 <hr>
                                 <li class="nav-item">
-                                    <a class="nav-link pages" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Настройки</a>
+                                    <a class="nav-link pages" type="button" data-bs-toggle="modal"
+                                       data-bs-target="#exampleModal">Настройки</a>
                                 </li>
                             </ul>
                         </div>
@@ -65,7 +66,7 @@
         <div class="col">
             <div class="right_col" role="main">
                 <!-- top tiles -->
-                <div class="row" style="display: inline-block;" >
+                <div class="row" style="display: inline-block;">
                     <div class="tile_count">
                         <div class="col-md-2 col-sm-4  tile_stats_count">
                             <span class="count_top"> Посещение сайта</span>
@@ -110,7 +111,8 @@
                                     <h3>График акций</h3>
                                 </div>
                                 <div class="col-md-6">
-                                    <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                                    <div id="reportrange" class="pull-right"
+                                         style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                                         <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                         <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
                                     </div>
@@ -131,7 +133,8 @@
                                         <p>Facebook Campaign</p>
                                         <div class="">
                                             <div class="progress progress_sm" style="width: 76%;">
-                                                <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
+                                                <div class="progress-bar bg-green" role="progressbar"
+                                                     data-transitiongoal="80"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -139,7 +142,8 @@
                                         <p>Twitter Campaign</p>
                                         <div class="">
                                             <div class="progress progress_sm" style="width: 76%;">
-                                                <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
+                                                <div class="progress-bar bg-green" role="progressbar"
+                                                     data-transitiongoal="60"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -149,7 +153,8 @@
                                         <p>Conventional Media</p>
                                         <div class="">
                                             <div class="progress progress_sm" style="width: 76%;">
-                                                <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="40"></div>
+                                                <div class="progress-bar bg-green" role="progressbar"
+                                                     data-transitiongoal="40"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -157,7 +162,8 @@
                                         <p>Bill boards</p>
                                         <div class="">
                                             <div class="progress progress_sm" style="width: 76%;">
-                                                <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                                                <div class="progress-bar bg-green" role="progressbar"
+                                                     data-transitiongoal="50"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -170,7 +176,7 @@
                     </div>
 
                 </div>
-                <br />
+                <br/>
 
                 <div class="row">
                     <div class="col-md-3 col-sm-4 ">
@@ -197,7 +203,8 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                                            <canvas class="canvasDoughnut" height="140" width="140"
+                                                    style="margin: 15px 10px 10px 0"></canvas>
                                         </td>
                                         <td>
                                             <table class="tile_info">
@@ -242,8 +249,9 @@
 
                     <div class="col-md-9 col-sm-4 ">
                         <div class="x_panel tile fixed_height_320">
+                            {% if current_user.is_authenticated %}
                             <div class="x_title">
-                                <h2>Имя пользовател</h2>
+                                <h2>{{current_user.username}}</h2>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
@@ -251,130 +259,167 @@
                                     <ul class="quick-list">
                                         <li><a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Настройки</a>
                                         </li>
-                                        <li><a href="/register">Регистрация</a>
+                                        <li><a href="/logout">Выход</a>
                                         </li>
                                     </ul>
+                                <div class="sidebar-widget">
+                                    <small>Сегодня: <img
+                                            src="../static/icons/green_elevator_icon-icons.com_5940.png"></small>
+                                    <h4>Количество отслеживаемых акций: 40</h4>
+                                    <h4>Ваш баланс: {{current_user.balance}}</h4>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="x_content">
+                            <div class="dashboard-widget-content">
+                                <ul class="quick-list">
+                                    <li><a type="button" data-bs-toggle="modal"
+                                           data-bs-target="#exampleModal">Настройки</a>
+                                    </li>
+                                    <li><a href="/register">Регистрация</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="x_title">
+                            <h2></h2>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                                    <div class="sidebar-widget">
-                                        <small>Сегодня: <img src="../static/icons/green_elevator_icon-icons.com_5940.png"></small>
-                                        <h4>Количество отслеживаемых акций: 40</h4>
-                                        <h4>Ваш баланс: 23000</h4>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-4 ">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Новости о акциях</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="dashboard-widget-content">
+
+                        <ul class="list-unstyled timeline widget">
+                            <li>
+                                <div class="block">
+                                    <div class="block_content">
+                                        <h2 class="title">
+                                            <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+                                        </h2>
+                                        <div class="byline">
+                                            <span>13 hours ago</span> by <a>Jane Smith</a>
+                                        </div>
+                                        <p class="excerpt">Film festivals used to be do-or-die moments for movie makers.
+                                            They were where you met the producers that could fund your project, and if
+                                            the
+                                            buyers liked your flick, they’d pay to Fast-forward and…
+                                            <a>Read&nbsp;More</a>
+                                        </p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-12 col-sm-4 ">
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <h2>Новости о акциях</h2>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-                                <div class="dashboard-widget-content">
-
-                                    <ul class="list-unstyled timeline widget">
-                                        <li>
-                                            <div class="block">
-                                                <div class="block_content">
-                                                    <h2 class="title">
-                                                        <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                                    </h2>
-                                                    <div class="byline">
-                                                        <span>13 hours ago</span> by <a>Jane Smith</a>
-                                                    </div>
-                                                    <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="block">
-                                                <div class="block_content">
-                                                    <h2 class="title">
-                                                        <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                                    </h2>
-                                                    <div class="byline">
-                                                        <span>13 hours ago</span> by <a>Jane Smith</a>
-                                                    </div>
-                                                    <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="block">
-                                                <div class="block_content">
-                                                    <h2 class="title">
-                                                        <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                                    </h2>
-                                                    <div class="byline">
-                                                        <span>13 hours ago</span> by <a>Jane Smith</a>
-                                                    </div>
-                                                    <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="block">
-                                                <div class="block_content">
-                                                    <h2 class="title">
-                                                        <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                                    </h2>
-                                                    <div class="byline">
-                                                        <span>13 hours ago</span> by <a>Jane Smith</a>
-                                                    </div>
-                                                    <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                            </li>
+                            <li>
+                                <div class="block">
+                                    <div class="block_content">
+                                        <h2 class="title">
+                                            <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+                                        </h2>
+                                        <div class="byline">
+                                            <span>13 hours ago</span> by <a>Jane Smith</a>
+                                        </div>
+                                        <p class="excerpt">Film festivals used to be do-or-die moments for movie makers.
+                                            They were where you met the producers that could fund your project, and if
+                                            the
+                                            buyers liked your flick, they’d pay to Fast-forward and…
+                                            <a>Read&nbsp;More</a>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                        </div>
+                            </li>
+                            <li>
+                                <div class="block">
+                                    <div class="block_content">
+                                        <h2 class="title">
+                                            <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+                                        </h2>
+                                        <div class="byline">
+                                            <span>13 hours ago</span> by <a>Jane Smith</a>
+                                        </div>
+                                        <p class="excerpt">Film festivals used to be do-or-die moments for movie makers.
+                                            They were where you met the producers that could fund your project, and if
+                                            the
+                                            buyers liked your flick, they’d pay to Fast-forward and…
+                                            <a>Read&nbsp;More</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="block">
+                                    <div class="block_content">
+                                        <h2 class="title">
+                                            <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+                                        </h2>
+                                        <div class="byline">
+                                            <span>13 hours ago</span> by <a>Jane Smith</a>
+                                        </div>
+                                        <p class="excerpt">Film festivals used to be do-or-die moments for movie makers.
+                                            They were where you met the producers that could fund your project, and if
+                                            the
+                                            buyers liked your flick, they’d pay to Fast-forward and…
+                                            <a>Read&nbsp;More</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Настройки</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Настройки</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Изменение темы на сайте</label>
                 </div>
-                <div class="modal-body">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">Изменение темы на сайте</label>
-                    </div>
-                    <div class="row">
-                        <div class="row g-3 align-items-center">
-                            <div class="col-auto">
-                                <input type="text" id="inputUser6" class="form-control">
-                            </div>
-                            <div class="col-auto">
-                                <label for="inputUser6" class="col-form-label">Изменение имени</label>
-                            </div>
+                <div class="row">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <input type="text" id="inputUser6" class="form-control">
+                        </div>
+                        <div class="col-auto">
+                            <label for="inputUser6" class="col-form-label">Изменение имени</label>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                    <button type="button" class="btn btn-primary">Сохранить изменения</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary">Сохранить изменения</button>
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- jQuery -->
 <script src="../static/js/jquery.min.js"></script>
