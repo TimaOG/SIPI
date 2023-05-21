@@ -3,7 +3,10 @@ from flask_login import UserMixin
 from sqlalchemy.orm import relationship
 
 
+
 class Users(db.Model, UserMixin):
+    """класс для работы с пользователями"""
+    __table_args__ = {'extend_existing': True}
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255))
@@ -33,11 +36,14 @@ class Users(db.Model, UserMixin):
 
 @login.user_loader
 def load_user(user_id):
+    """подгррузка пользователя"""
     user = Users.query.get(user_id)
     return user
 
 
 class Notifications(db.Model):
+    """класс работы с уведомлениями"""
+    __table_args__ = {'extend_existing': True}
     __tablename__ = 'notifications'
     id = db.Column(db.Integer, primary_key=True)
     dealprice = db.Column(db.Integer)
@@ -55,6 +61,8 @@ class Notifications(db.Model):
 
 
 class Stocks(db.Model):
+    """класс работы с акциями"""
+    __table_args__ = {'extend_existing': True}
     __tablename__ = 'stocks'
     id = db.Column(db.Integer, primary_key=True)
     stocksymbol = db.Column(db.String(255))
@@ -69,6 +77,8 @@ class Stocks(db.Model):
 
 
 class TargetStocks(db.Model):
+    """отслеживаемые акции"""
+    __table_args__ = {'extend_existing': True}
     __tablename__ = 'target_stocks'
     id = db.Column(db.Integer, primary_key=True)
     notification = relationship('Notifications')

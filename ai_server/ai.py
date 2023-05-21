@@ -7,9 +7,11 @@ from sklearn.preprocessing import MinMaxScaler
 
 
 class AI_Stocks:
+    """класс получения цены акций"""
 
     @staticmethod
     def getPredictionAbout(stock_name: str, days_for=2):
+        """получение предсказания"""
         AAPL = AI_Stocks.getStockData(stock_name)
         X = AAPL.filter(['Close']).values
         scaler = MinMaxScaler()
@@ -23,6 +25,7 @@ class AI_Stocks:
 
     @staticmethod
     def getStockData(stock_name: str):
+        """получение цены акций за большой период"""
         today = date.today().strftime('%Y-%m-%d')
         time_ago = str(date.today() - timedelta(days=5 * 365))
         ticket = stock_name
