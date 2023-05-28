@@ -11,4 +11,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
+news_url = 'https://ria.ru/tag_thematic_category_Akcii/'
+stoсks_url = 'https://www.tinkoff.ru/invest/stocks/?start=0&end=60&country=All&orderType=Asc&sortType=ByName&countryOfRisk=RU'
 """конфиги"""
