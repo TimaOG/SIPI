@@ -4,16 +4,21 @@ import requests
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
+from datetime import datetime
 
-
+donePredictions = {}
 class AI_Stocks:
     """класс получения цены акций"""
-
     @staticmethod
     def getPredictionAbout(stock_name: str, days_for=2):
         """получение предсказания"""
+        global donePredictions
+        if stock_name in donePredictions and donePredictions[stock_name][1] == datetime.now().strftime('%Y-%m-%d'):
+            return donePredictions[stock_name][0]
         AAPL = AI_Stocks.getStockData(stock_name)
         X = AAPL.filter(['Close']).values
+        print('test')
+        print(donePredictions)
         scaler = MinMaxScaler()
         X = scaler.fit_transform(X)
         y = AAPL.filter(['Close']).shift(-1).values
@@ -21,6 +26,8 @@ class AI_Stocks:
         model = LinearRegression()
         model.fit(X_train, y_train)
         prediction = model.predict(scaler.transform(AAPL.tail(1).filter(['Close']).values))
+        current_date = datetime.now().strftime('%Y-%m-%d')
+        donePredictions[stock_name] = [prediction, current_date]
         return prediction
 
     @staticmethod
