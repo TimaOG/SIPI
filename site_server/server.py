@@ -7,16 +7,20 @@ from flask import redirect, render_template, url_for, request, flash
 from werkzeug.security import check_password_hash, generate_password_hash
 from utils import getStockPrice
 
+"""сервер основной"""
 
 @app.route('/')
 @app.route('/index')
 def index():
+    """открытие главной страницы"""
     print(getStockPrice('SBER'))
     return render_template('index.html')
 
 
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    """функция логина"""
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -33,12 +37,14 @@ def login():
 @app.route('/logout')
 @login_required
 def logout():
+    """функция логаут"""
     logout_user()
     return redirect(url_for('index'))
 
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    """функционал регистрации"""
     fio = request.form.get('username')
     email = request.form.get('email')
     pass1 = request.form.get('password1')
@@ -59,12 +65,14 @@ def register():
 
 @app.route('/profile')
 def profile():
+    """функция профиля"""
     return render_template('profile.html')
 
 
 @app.route('/stocks')
 @login_required
 def stocks():
+    """функция получения акций"""
     return render_template('stocks.html')
 
 

@@ -7,8 +7,8 @@ app.secret_key = '1SuperSecretKey1'
 
 @app.route("/prediction/<stock_name>")
 def openMain(stock_name: str):
+    """запуск сервер для получения цены акций"""
     gg = AI_Stocks.getPredictionAbout(stock_name)
-    print(gg)
     res = jsonify({'Predictions' : gg[0][0]})
     return res
 
