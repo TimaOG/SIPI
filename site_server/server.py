@@ -38,11 +38,12 @@ def stocks_parser():
         #                        'price': ''.join(i for i in stock.find('span', class_='Money-module__money_p_VHJ').text if i.isdigit() or i == ','),
         #                        'percent': ''.join(i for i in stock.find('div', class_='PriceCellWithYearChange__relative_Ijlmu').text if i.isdigit() or i == '%' or i == ',' or i == '+')
         #                        })
-        filteredStocks.append({'name': stock.find('div', class_='SecurityRow__showName_inlal SecurityRow__overflowEllipsis_zFECb').text,
-                               'code': stock.find('div', class_='SecurityRow__ticker_KMm7A').text,
-                               'price': stock.find('span', class_='Money-module__money_p_VHJ').text.replace('\xa0', ' '),
-                               'percent': stock.find('div', class_='PriceCellWithYearChange__relative_Ijlmu').text
-                               })
+        filteredStocks.append(
+            {'name': stock.find('div', class_='SecurityRow__showName_inlal SecurityRow__overflowEllipsis_zFECb').text,
+             'code': stock.find('div', class_='SecurityRow__ticker_KMm7A').text,
+             'price': stock.find('span', class_='Money-module__money_p_VHJ').text.replace('\xa0', ' '),
+             'percent': stock.find('div', class_='PriceCellWithYearChange__relative_Ijlmu').text
+             })
     return filteredStocks
 
 
@@ -52,6 +53,51 @@ def index():
     """открытие главной страницы"""
     news = news_parser()
     return render_template('index.html', news=news[1:6], stocks=stocks)
+
+
+@app.route('/settings', methods=['POST', 'GET'])
+@login_required
+def change_settings():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        passwd = request.form.get('passwd')
+        email = request.form.get('email')
+        telegramId = request.form.get('telegramId')
+        isMailing = request.form.get('isMailing')
+        if name:
+            user = Users.query.filter_by(id=current_user.id).first()
+            user.username = name
+            db.session.add(user)
+            db.session.commit()
+            return redirect(url_for('index'))
+        elif passwd:
+            user = Users.query.filter_by(id=current_user.id).first()
+            passHash = generate_password_hash(passwd)
+            user.userpassword = passHash
+            db.session.add(user)
+            db.session.commit()
+            return redirect(url_for('index'))
+        elif email:
+            user = Users.query.filter_by(id=current_user.id).first()
+            user.email = email
+            db.session.add(user)
+            db.session.commit()
+            return redirect(url_for('index'))
+        elif telegramId:
+            user = Users.query.filter_by(id=current_user.id).first()
+            user.telegramid = telegramId
+            db.session.add(user)
+            db.session.commit()
+            return redirect(url_for('index'))
+        elif isMailing:
+            user = Users.query.filter_by(id=current_user.id).first()
+            user.isMailing = True if isMailing == 'on' else False
+            db.session.add(user)
+            db.session.commit()
+            return redirect(url_for('index'))
+        else:
+            return redirect(url_for('index'))
+    return render_template('index.html')
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -95,7 +141,7 @@ def register():
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user)
-            return redirect(url_for('stocks'))
+            return redirect(url_for('index'))
     return render_template('register.html')
 
 

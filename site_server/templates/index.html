@@ -208,14 +208,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Настройки</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabelll">Настройки</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="/settings" method="POST">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Укажите адрес электронной почты</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="email"
                                    aria-describedby="emailHelp">
                             <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную
                                 почту.
@@ -223,28 +223,34 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Сменить пароль</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="passwd">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Сменить имя</label>
+                            <input type="text" class="form-control" id="exampleInputName" name="name">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">TelegramID</label>
                             <input type="text" class="form-control" id="exampleInputTeleg1" aria-describedby="emailHelp"
-                                   placeholder="@name">
+                                   placeholder="@name" name="telegramId">
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="isMailing">
                             <label class="form-check-label" for="exampleCheck1">Разрешить рассылку в Telegram</label>
                         </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input btn-toggle" type="checkbox" role="switch"
+                                   id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Изменение темы на сайте</label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                            <button type="submit" class="btn btn-primary">Применить изменения</button>
+                        </div>
                     </form>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input btn-toggle" type="checkbox" role="switch"
-                               id="flexSwitchCheckDefault">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">Изменение темы на сайте</label>
-                    </div>
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                    <button type="button" class="btn btn-primary">Применить изменения</button>
-                </div>
+
             </div>
         </div>
     </div>

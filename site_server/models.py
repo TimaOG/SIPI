@@ -13,19 +13,19 @@ class Users(db.Model, UserMixin):
     userpassword = db.Column(db.String(255), unique=True)
     email = db.Column(db.String(255), unique=True)
     telegramid = db.Column(db.Integer)
-    isprime = db.Column(db.Boolean)
+    isMailing = db.Column(db.Boolean)
     theme = db.Column(db.Integer)
     registrationdate = db.Column(db.Date)
     balance = db.Column(db.Integer)
 
     targetStocks = relationship('TargetStocks')
 
-    def __init__(self, name, password, email, telegrammid, isprime, theme, regdate, balance):
+    def __init__(self, name, password, email, telegrammid, isMailing, theme, regdate, balance):
         self.username = name
         self.userpassword = password
         self.email = email
         self.telegramid = telegrammid
-        self.isprime = isprime
+        self.isMailing = isMailing
         self.theme = theme
         self.registrationdate = regdate
         self.balance = balance
