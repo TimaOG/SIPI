@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from config import app, db, news_url, stoсks_url
 from models import Users, Notifications, Stocks, TargetStocks
 from flask_login import login_user, login_required, current_user, logout_user
-from flask import redirect, render_template, url_for, request, flash
+from flask import redirect, render_template, url_for, request
 from werkzeug.security import check_password_hash, generate_password_hash
 from utils import getStockPrice
 
@@ -47,12 +47,14 @@ def stocks_parser():
 def index():
     """открытие главной страницы"""
     news = news_parser()
-    stocks = []
-    user = Users.query.filter_by(id=current_user.id).first()
-    targets = TargetStocks.query.filter_by(fkuser=user.id).all()
-    for target in targets:
-        stocks.append(Stocks.query.filter_by(id=target.fkstock).first())
-    return render_template('index.html', news=news[1:6], stocks=stocks)
+    if current_user.is_authenticated:
+        stocks = []
+        user = Users.query.filter_by(id=current_user.id).first()
+        targets = TargetStocks.query.filter_by(fkuser=user.id).all()
+        for target in targets:
+            stocks.append(Stocks.query.filter_by(id=target.fkstock).first())
+        return render_template('index.html', news=news[0:6], stocks=stocks)
+    return render_template('index.html', news=news[0:6])
 
 
 @app.route('/settings', methods=['POST', 'GET'])
@@ -163,7 +165,7 @@ def stocks():
             stock.percent = item['percent']
             db.session.add(stock)
         else:
-            new_stock = Stocks(name=item['name'], code=item['code'], price=item['price'], percent=item['percent'])
+            new_stock = Stocks(name=item['name'], code=item['code'], price=item['price'], percent=item['percent'], prediction='0')
             db.session.add(new_stock)
         db.session.commit()
     db_stocks = Stocks.query.all()

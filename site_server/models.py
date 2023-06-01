@@ -69,14 +69,16 @@ class Stocks(db.Model):
     name = db.Column(db.String(255))
     price = db.Column(db.String(255))
     percent = db.Column(db.String(255))
+    prediction = db.Column(db.String(255))
 
     targetStocks = relationship('TargetStocks')
 
-    def __init__(self, code, name, price, percent):
+    def __init__(self, code, name, price, percent, prediction):
         self.code = code
         self.name = name
         self.price = price
         self.percent = percent
+        self.prediction = prediction
 
     def __repr__(self):
         return f'Stock: {self.code}\n\n'
