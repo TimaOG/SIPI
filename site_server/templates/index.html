@@ -161,39 +161,31 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">Код</th>
                             <th scope="col">Название</th>
                             <th scope="col">Удалить акцию</th>
                             <th scope="col">Получить прогноз</th>
                         </tr>
                         </thead>
                         <tbody>
+                        {% for stock in stocks %}
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row">{{ stock.code }}</th>
                             <td>
-                                <img src="../static/icons/surprise.png" alt="icon_s" width="30" height="24">
-                                Apple
+                                {{ stock.name }}
                             </td>
-                            <td>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-success btn-sm">Получить</button>
-                            </td>
+                            <form action="/delete" method="POST">
+                                <td>
+                                    <button type="button" class="btn btn-danger btn-sm">Удалить</button>
+                                </td>
+                            </form>
+                            <form action="/get_prediction" method="POST">
+                                <td>
+                                    <button type="button" class="btn btn-success btn-sm">Получить</button>
+                                </td>
+                            </form>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>
-                                <img src="../static/icons/surprise.png" alt="icon_s" width="30" height="24">
-                                Apple
-                            </td>
-                            <td>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-success btn-sm">Получить</button>
-                            </td>
-                        </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>

@@ -47,6 +47,11 @@ def stocks_parser():
 def index():
     """открытие главной страницы"""
     news = news_parser()
+    stocks = []
+    user = Users.query.filter_by(id=current_user.id).first()
+    targets = TargetStocks.query.filter_by(fkuser=user.id).all()
+    for target in targets:
+        stocks.append(Stocks.query.filter_by(id=target.fkstock).first())
     return render_template('index.html', news=news[1:6], stocks=stocks)
 
 
@@ -157,13 +162,12 @@ def stocks():
             stock.price = item['price']
             stock.percent = item['percent']
             db.session.add(stock)
-            print(item['code'] + ' is old')
         else:
             new_stock = Stocks(name=item['name'], code=item['code'], price=item['price'], percent=item['percent'])
             db.session.add(new_stock)
-            print(item['code'] + ' is new')
         db.session.commit()
-    return render_template('stoks.html', stocks=stocks)
+    db_stocks = Stocks.query.all()
+    return render_template('stoks.html', stocks=db_stocks)
 
 
 @app.route('/analiz')
@@ -174,10 +178,18 @@ def analiz():
 
 
 @app.route('/totarget/<code>', methods=['GET', 'POST'])
-def saveToTarget():
+@login_required
+def saveToTarget(code):
     """сохранение акции в избранное"""
-
+    if request.method == 'POST':
+        user = Users.query.filter_by(id=current_user.id).first()
+        stock = Stocks.query.filter_by(code=code).first()
+        new_target = TargetStocks(userId=user.id, stockId=stock.id)
+        db.session.add(new_target)
+        db.session.commit()
+        return redirect(url_for('stocks'))
     return render_template('stoks.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)

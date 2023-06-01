@@ -52,33 +52,38 @@
         <tr>
             <th scope="col">Код</th>
             <th scope="col">Название</th>
-            <!--                <th scope="col">Добавить в избранное</th>-->
             <th scope="col">Цена</th>
             <th scope="col">За год</th>
+            {% if current_user.is_authenticated %}
             <th scope="col">Добавить в избранное</th>
+            {% endif %}
 
         </tr>
         </thead>
         <tbody>
-        {%for stock in stocks%}
+        {% for stock in stocks %}
         <tr>
             <td>
-                {{stock['code']}}
+                {{ stock.code }}
             </td>
             <td>
-                {{stock['name']}}
+                {{ stock.name }}
             </td>
             <td>
-                {{stock['price']}}
+                {{ stock.price }}
             </td>
             <td id="saleyear" class="saleyear">
-                {{stock['percent']}}
+                {{ stock.percent }}
             </td>
-            <td>
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            </td>
+            {% if current_user.is_authenticated %}
+            <form action="/totarget/{{ stock.code }}" method="POST">
+                <td>
+                     <button type="submit" class="btn btn-primary">Добавить</button>
+                </td>
+            </form>
+            {% endif %}
         </tr>
-        {%endfor%}
+        {% endfor %}
         </tbody>
     </table>
 </main>
