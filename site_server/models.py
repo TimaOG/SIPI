@@ -65,15 +65,21 @@ class Stocks(db.Model):
     __table_args__ = {'extend_existing': True}
     __tablename__ = 'stocks'
     id = db.Column(db.Integer, primary_key=True)
-    stocksymbol = db.Column(db.String(255))
+    code = db.Column(db.String(255))
+    name = db.Column(db.String(255))
+    price = db.Column(db.String(255))
+    percent = db.Column(db.String(255))
 
     targetStocks = relationship('TargetStocks')
 
-    def __init__(self, symbl):
-        self.stocksymbol = symbl
+    def __init__(self, code, name, price, percent):
+        self.code = code
+        self.name = name
+        self.price = price
+        self.percent = percent
 
     def __repr__(self):
-        return f'Stock: {self.stocksymbol}\n\n'
+        return f'Stock: {self.code}\n\n'
 
 
 class TargetStocks(db.Model):

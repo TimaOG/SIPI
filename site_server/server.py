@@ -33,11 +33,6 @@ def stocks_parser():
     soap = BeautifulSoup(page.content.decode('utf-8'), "html.parser")
     allStocks = soap.find_all('tr', class_='Table-module__row_Qlwsh Table-module__row_clickable_FeO1O')
     for stock in allStocks:
-        # filteredStocks.append({'name': stock.find('div', class_='SecurityRow__showName_inlal SecurityRow__overflowEllipsis_zFECb').text,
-        #                        'code': stock.find('div', class_='SecurityRow__ticker_KMm7A').text,
-        #                        'price': ''.join(i for i in stock.find('span', class_='Money-module__money_p_VHJ').text if i.isdigit() or i == ','),
-        #                        'percent': ''.join(i for i in stock.find('div', class_='PriceCellWithYearChange__relative_Ijlmu').text if i.isdigit() or i == '%' or i == ',' or i == '+')
-        #                        })
         filteredStocks.append(
             {'name': stock.find('div', class_='SecurityRow__showName_inlal SecurityRow__overflowEllipsis_zFECb').text,
              'code': stock.find('div', class_='SecurityRow__ticker_KMm7A').text,
@@ -136,7 +131,7 @@ def register():
             return redirect(url_for('register'))
         else:
             passHash = generate_password_hash(pass1)
-            new_user = Users(name=fio, password=passHash, email=email, telegrammid=666, isprime=True, theme=1,
+            new_user = Users(name=fio, password=passHash, email=email, telegrammid=666, isMailing=True, theme=1,
                              regdate=datetime.date.today(), balance=0)
             db.session.add(new_user)
             db.session.commit()
@@ -156,6 +151,18 @@ def profile():
 def stocks():
     """функция получения акций"""
     stocks = stocks_parser()
+    for item in stocks:
+        if Stocks.query.filter_by(code=item['code']).scalar():
+            stock = Stocks.query.filter_by(code=item['code']).first()
+            stock.price = item['price']
+            stock.percent = item['percent']
+            db.session.add(stock)
+            print(item['code'] + ' is old')
+        else:
+            new_stock = Stocks(name=item['name'], code=item['code'], price=item['price'], percent=item['percent'])
+            db.session.add(new_stock)
+            print(item['code'] + ' is new')
+        db.session.commit()
     return render_template('stoks.html', stocks=stocks)
 
 
@@ -165,6 +172,12 @@ def analiz():
     """анализ акций"""
     return render_template('analiz.html')
 
+
+@app.route('/totarget/<code>', methods=['GET', 'POST'])
+def saveToTarget():
+    """сохранение акции в избранное"""
+
+    return render_template('stoks.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
