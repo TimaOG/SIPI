@@ -165,7 +165,8 @@ def stocks():
             stock.percent = item['percent']
             db.session.add(stock)
         else:
-            new_stock = Stocks(name=item['name'], code=item['code'], price=item['price'], percent=item['percent'], prediction='0')
+            new_stock = Stocks(name=item['name'], code=item['code'], price=item['price'], percent=item['percent'],
+                               prediction='0')
             db.session.add(new_stock)
         db.session.commit()
     db_stocks = Stocks.query.all()
@@ -181,16 +182,46 @@ def analiz():
 
 @app.route('/totarget/<code>', methods=['GET', 'POST'])
 @login_required
-def saveToTarget(code):
+def save_to_targets(code):
     """сохранение акции в избранное"""
     if request.method == 'POST':
         user = Users.query.filter_by(id=current_user.id).first()
         stock = Stocks.query.filter_by(code=code).first()
+        if TargetStocks.query.filter_by(fkuser=user.id).first():
+            targets = TargetStocks.query.filter_by(fkuser=user.id).all()
+            for target in targets:
+                if target.fkstock == stock.id:
+                    return redirect(url_for('stocks'))
         new_target = TargetStocks(userId=user.id, stockId=stock.id)
         db.session.add(new_target)
         db.session.commit()
         return redirect(url_for('stocks'))
     return render_template('stoks.html')
+
+
+@app.route('/delete/<code>', methods=['GET', 'POST'])
+@login_required
+def delete_stock(code):
+    if request.method == 'POST':
+        stock = Stocks.query.filter_by(code=code).first()
+        target = TargetStocks.query.filter_by(fkstock=stock.id).first()
+        db.session.delete(target)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('index.html')
+
+
+@app.route('/prediction/<code>', methods=['GET', 'POST'])
+@login_required
+def get_prediction(code):
+    if request.method == 'POST':
+        stock = Stocks.query.filter_by(code=code).first()
+        new_price = float('{:.2f}'.format(float(getStockPrice(code))))
+        stock.prediction = str(new_price)
+        db.session.add(stock)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('index.html')
 
 
 if __name__ == "__main__":

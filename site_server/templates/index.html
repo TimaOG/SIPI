@@ -163,6 +163,8 @@
                         <tr>
                             <th scope="col">Код</th>
                             <th scope="col">Название</th>
+                            <th scope="col">Текущая стоимость</th>
+                            <th scope="col">Предполагаемая стоимость</th>
                             <th scope="col">Удалить акцию</th>
                             <th scope="col">Получить прогноз</th>
                         </tr>
@@ -174,14 +176,20 @@
                             <td>
                                 {{ stock.name }}
                             </td>
-                            <form action="/delete" method="POST">
+                            <td>
+                                {{ stock.price }}
+                            </td>
+                            <td>
+                                {{ stock.prediction }}
+                            </td>
+                            <form action="/delete/{{ stock.code }}" method="POST">
                                 <td>
-                                    <button type="button" class="btn btn-danger btn-sm">Удалить</button>
+                                    <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
                                 </td>
                             </form>
-                            <form action="/get_prediction" method="POST">
+                            <form action="/prediction/{{ stock.code }}" method="POST">
                                 <td>
-                                    <button type="button" class="btn btn-success btn-sm">Получить</button>
+                                    <button type="submit" class="btn btn-success btn-sm">Получить</button>
                                 </td>
                             </form>
                         </tr>

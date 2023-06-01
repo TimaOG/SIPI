@@ -49,7 +49,7 @@ class Notifications(db.Model):
     dealprice = db.Column(db.Integer)
     usetelegram = db.Column(db.Boolean)
     useemail = db.Column(db.Boolean)
-    targetStock = db.Column(db.Integer, db.ForeignKey('target_stocks.id'))
+    fktargetstock = db.Column(db.Integer, db.ForeignKey('target_stocks.id'))
 
     def __init__(self, price, usetelegram, useemail):
         self.dealprice = price
