@@ -5,7 +5,7 @@ CREATE TABLE Users
 	userPassword text,
 	email varchar(255),
 	telegramId int,
-	isPrime boolean,
+	isMailing boolean,
 	theme int,
 	registrationDate date
 );
