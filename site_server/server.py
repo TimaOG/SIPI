@@ -182,15 +182,13 @@ def stocks():
 def analiz():
     """анализ акций"""
     stocks = []
-    stocksNames = []
     hist = {}
     targets = TargetStocks.query.filter_by(fkuser=current_user.id).all()
     for target in targets:
         stocks.append(Stocks.query.filter_by(id=target.fkstock).first())
     for stock in stocks:
         hist[stock.code] = getHistoryPrice(stock.code)
-        stocksNames.append(stock.code)
-    return render_template('analiz.html', stocks=stocks, history=hist, stocksNames=stocksNames)
+    return render_template('analiz.html', stocks=stocks, history=hist, length=len(hist))
 
 
 @app.route('/totarget/<code>', methods=['GET', 'POST'])

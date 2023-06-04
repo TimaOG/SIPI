@@ -53,7 +53,7 @@
                                 {{ stock.code }}
                             </td>
                             <td>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultt">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault_{{stock.code}}" onclick="return getChart('{{stock.code | safe}}', '{{stock.id | safe}}');">
                             </td>
                         </tr>
                     </li>
@@ -64,7 +64,7 @@
     </main>
     <script>
         var histData = {{history | safe}};
-        var dataNames = {{stocksNames | safe}}; //fg
+        var dataLength = {{length | safe}}
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="../static/js/analiz.js"></script>
