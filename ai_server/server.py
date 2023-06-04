@@ -12,6 +12,14 @@ def openMain(stock_name: str):
     res = jsonify({'Predictions' : gg[0][0]})
     return res
 
+@app.route("/history/<stock_name>")
+def openHistory(stock_name: str):
+    """Получение исторических данных"""
+    gg = AI_Stocks.getPredictionAbout(stock_name, isHistory=True)
+    print(gg)
+    res = jsonify({'Predictions' : gg})
+    return res
+
 if __name__ == "__main__":
     app.run(debug=True, host='localhost', port=5001)
 

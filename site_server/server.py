@@ -7,7 +7,7 @@ from models import Users, Notifications, Stocks, TargetStocks
 from flask_login import login_user, login_required, current_user, logout_user
 from flask import redirect, render_template, url_for, request
 from werkzeug.security import check_password_hash, generate_password_hash
-from utils import getStockPrice
+from utils import getStockPrice, getHistoryPrice
 
 """сервер основной"""
 
