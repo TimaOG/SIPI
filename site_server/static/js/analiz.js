@@ -1,7 +1,7 @@
 var checkbox = document.getElementById('flexCheckDefaultt');
-var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"];
-var data1 = [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478];
-
+var xValues = histData.QIWI.Date;
+var data1 = histData.QIWI.Close;
+console.log(dataNames);
 var chartOptions = {
   type: "line",
   data: {
