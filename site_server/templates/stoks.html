@@ -77,8 +77,8 @@
             </td>
             {% if current_user.is_authenticated %}
             <form action="/totarget/{{ stock.code }}" method="POST">
-                <td>
-                     <button type="submit" class="btn btn-primary bookmark"><img src="../static/icons/bookmark_dis.png" alt="Add_bookmark"></button>
+                <td class="bookmarksItem">
+                     <button type="submit" class="btn bookmark" onclick="return AddBookMarks();"><img id="imgClickAndChange" src="../static/icons/bookmark_dis.png" alt="Add_bookmark"></button>
                 </td>
             </form>
             {% endif %}
@@ -89,5 +89,6 @@
 </main>
 
 <script src="../static/js/funcscriptsto.js"></script>
+<script src="../static/js/AddBookMarks.js"></script>
 </body>
 </html>
