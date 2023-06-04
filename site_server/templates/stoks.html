@@ -50,12 +50,12 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Код</th>
-            <th scope="col">Название</th>
-            <th scope="col">Цена</th>
-            <th scope="col">За год</th>
+            <th class="cen" scope="col">Код</th>
+            <th class="cen" scope="col">Название</th>
+            <th class="cen" scope="col">Цена</th>
+            <th class="cen" scope="col">За год</th>
             {% if current_user.is_authenticated %}
-            <th scope="col">Добавить в избранное</th>
+            <th class="cen" scope="col">Добавить в избранное</th>
             {% endif %}
 
         </tr>
@@ -63,22 +63,22 @@
         <tbody>
         {% for stock in stocks %}
         <tr>
-            <td>
+            <td class="cen">
                 {{ stock.code }}
             </td>
-            <td>
+            <td class="cen">
                 {{ stock.name }}
             </td>
-            <td>
+            <td class="cen">
                 {{ stock.price }}
             </td>
-            <td id="saleyear" class="saleyear">
+            <td id="saleyear" class="saleyear cen">
                 {{ stock.percent }}
             </td>
             {% if current_user.is_authenticated %}
             <form action="/totarget/{{ stock.code }}" method="POST">
                 <td>
-                     <button type="submit" class="btn btn-primary">Добавить</button>
+                     <button type="submit" class="btn btn-primary bookmark"><img src="../static/icons/bookmark_dis.png" alt="Add_bookmark"></button>
                 </td>
             </form>
             {% endif %}

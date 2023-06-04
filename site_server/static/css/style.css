@@ -339,3 +339,8 @@ ul.timeline li {
     width:100%;
     transition:800ms ease all;
 }
+
+.bookmark{
+    display: table;
+    margin: 0 auto;
+}
