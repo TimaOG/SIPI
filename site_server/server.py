@@ -164,10 +164,11 @@ def stocks():
             db.session.add(new_stock)
         db.session.commit()
     db_stocks = Stocks.query.all()
-    targets = TargetStocks.query.filter_by(fkuser=current_user.id).all()
-    for target in targets:
-        tmp = Stocks.query.filter_by(id=target.fkstock).first()
-        fav_stocks.append(tmp.id)
+    if current_user.is_authenticated:
+        targets = TargetStocks.query.filter_by(fkuser=current_user.id).all()
+        for target in targets:
+            tmp = Stocks.query.filter_by(id=target.fkstock).first()
+            fav_stocks.append(tmp.id)
     return render_template('stoks.html', stocks=db_stocks, fav_stocks=fav_stocks)
 
 
