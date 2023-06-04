@@ -45,44 +45,29 @@
             </div>
             <div class="col stoks_block">
                 <ul>
+                    {% for stock in stocks %}
                     <li class="p-3">
                         <tr>
                             <td>
                                 <img src="../static/icons/surprise.png" alt="icon_s" width="30" height="24">
-                                Apple
+                                {{ stock.code }}
                             </td>
                             <td>
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultt">
                             </td>
                         </tr>
                     </li>
-                    <li class="p-3">
-                        <tr>
-                            <td>
-                                <img src="../static/icons/surprise.png" alt="icon_s" width="30" height="24">
-                                Apple
-                            </td>
-                            <td>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaulttt">
-                            </td>
-                        </tr>
-                    </li>
-                    <li class="p-3">
-                        <tr>
-                            <td>
-                                <img src="../static/icons/surprise.png" alt="icon_s" width="30" height="24">
-                                Apple
-                            </td>
-                            <td>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultttt">
-                            </td>
-                        </tr>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
-    </main> 
+    </main>
+    <script>
+        var histData = {{history | safe}};
+        console.log(histData);
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="../static/js/analiz.js"></script>
+
 </body>
 </html>

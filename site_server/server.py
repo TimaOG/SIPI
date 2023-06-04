@@ -1,6 +1,5 @@
 import datetime
 import requests
-import codecs
 from bs4 import BeautifulSoup
 from config import app, db, news_url, stoсks_url
 from models import Users, Notifications, Stocks, TargetStocks
@@ -179,10 +178,17 @@ def stocks():
 
 
 @app.route('/analiz')
-# @login_required
+@login_required
 def analiz():
     """анализ акций"""
-    return render_template('analiz.html')
+    stocks = []
+    hist = []
+    targets = TargetStocks.query.filter_by(fkuser=current_user.id).all()
+    for target in targets:
+        stocks.append(Stocks.query.filter_by(id=target.fkstock).first())
+    for stock in stocks:
+        hist.append(getHistoryPrice(stock.code))
+    return render_template('analiz.html', stocks=stocks, history=hist)
 
 
 @app.route('/totarget/<code>', methods=['GET', 'POST'])
