@@ -53,7 +53,7 @@
                                 {{ stock.code }}
                             </td>
                             <td>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault_{{stock.code}}" onclick="return getChart('{{stock.code | safe}}', '{{stock.id | safe}}');">
+                                <input class="form-check-input checkBoxStock" type="checkbox" name="{{stock.code}}" onclick="return getChart();">
                             </td>
                         </tr>
                     </li>
