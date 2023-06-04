@@ -146,12 +146,6 @@ def register():
     return render_template('register.html')
 
 
-@app.route('/profile')
-def profile():
-    """функция профиля"""
-    return render_template('profile.html')
-
-
 @app.route('/stoks')
 # @login_required
 def stocks():
@@ -235,6 +229,16 @@ def get_prediction(code):
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('index.html')
+
+
+@app.route('/daleteaccount', methods=['GET', 'POST'])
+@login_required
+def dalete_account():
+    user = Users.query.filter_by(id=current_user.id).first()
+    db.session.delete(user)
+    db.session.commit()
+    logout_user()
+    return redirect(url_for('index'))
 
 
 if __name__ == "__main__":
