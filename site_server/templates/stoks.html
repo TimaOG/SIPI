@@ -79,7 +79,7 @@
             {% if current_user.is_authenticated %}
             <form action="/totarget/{{ stock.code }}" method="POST">
                 <td class="bookmarksItem">
-                     <button type="submit" class="btn bookmark" onclick="return AddBookMarks();"><img id="imgClickAndChange" src="../static/icons/bookmark_dis.png" alt="Add_bookmark"></button>
+                     <button type="submit" class="btn bookmark" onclick="return AddBookMarks(this);"><img class="imgClickAndChange" src="../static/icons/bookmark_dis.png" alt="Add_bookmark"></button>
                 </td>
             </form>
             {% endif %}
