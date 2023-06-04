@@ -158,6 +158,7 @@ def profile():
 def stocks():
     """функция получения акций"""
     stocks = stocks_parser()
+    fav_stocks = []
     for item in stocks:
         if Stocks.query.filter_by(code=item['code']).scalar():
             stock = Stocks.query.filter_by(code=item['code']).first()
@@ -170,7 +171,11 @@ def stocks():
             db.session.add(new_stock)
         db.session.commit()
     db_stocks = Stocks.query.all()
-    return render_template('stoks.html', stocks=db_stocks)
+    targets = TargetStocks.query.filter_by(fkuser=current_user.id).all()
+    for target in targets:
+        tmp = Stocks.query.filter_by(id=target.fkstock).first()
+        fav_stocks.append(tmp.id)
+    return render_template('stoks.html', stocks=db_stocks, fav_stocks=fav_stocks)
 
 
 @app.route('/analiz')
@@ -204,8 +209,10 @@ def save_to_targets(code):
 def delete_stock(code):
     if request.method == 'POST':
         stock = Stocks.query.filter_by(code=code).first()
+        stock.prediction = None
         target = TargetStocks.query.filter_by(fkstock=stock.id).first()
         db.session.delete(target)
+        db.session.add(stock)
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('index.html')

@@ -77,11 +77,23 @@
                 {{ stock.percent }}
             </td>
             {% if current_user.is_authenticated %}
-            <form action="/totarget/{{ stock.code }}" method="POST">
+            {% if stock.id in fav_stocks%}
+            <form action="/delete/{{ stock.code }}" method="POST">
                 <td class="bookmarksItem">
-                     <button type="submit" class="btn bookmark" onclick="return AddBookMarks(this);"><img class="imgClickAndChange" src="../static/icons/bookmark_dis.png" alt="Add_bookmark"></button>
+                    <button type="submit" class="btn bookmark" onclick="return AddBookMarks(this);"><img
+                            class="imgClickAndChange" src="../static/icons/bookmark_active.png" alt="Add_bookmark">
+                    </button>
                 </td>
             </form>
+            {% else %}
+            <form action="/totarget/{{ stock.code }}" method="POST">
+                <td class="bookmarksItem">
+                    <button type="submit" class="btn bookmark" onclick="return AddBookMarks(this);"><img
+                            class="imgClickAndChange" src="../static/icons/bookmark_dis.png" alt="Add_bookmark">
+                    </button>
+                </td>
+            </form>
+            {% endif %}
             {% endif %}
         </tr>
         {% endfor %}
