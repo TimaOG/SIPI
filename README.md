@@ -31,6 +31,6 @@
 </div>
 </div>
 Всё готово!
-<img src="https://sun1-84.userapi.com/impg/NeKCDSHd9A3fNert8dhdqFApin7QpwlsxKEbCQ/IGX0noSyuig.jpg?size=1242x602&quality=96&sign=4d6200685ff4890302ea0844f1d0753a&type=album" alt="альтернативный текст" style="height: 200px; width: 400px;">
 </article>
+ <img src="https://sun1-84.userapi.com/impg/NeKCDSHd9A3fNert8dhdqFApin7QpwlsxKEbCQ/IGX0noSyuig.jpg?size=1242x602&quality=96&sign=4d6200685ff4890302ea0844f1d0753a&type=album" alt="альтернативный текст" style="height: 200px; width: 400px;">
 </div>
